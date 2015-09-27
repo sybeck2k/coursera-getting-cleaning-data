@@ -21,10 +21,8 @@ train_ds <- cbind(subject_train_ds, y_train_ds, x_train_ds)
 test_ds <- cbind(subject_test_ds, y_test_ds, x_test_ds)
 combined_ds <- rbind(train_ds, test_ds)
 
-#filter cols of means and std
-keepcols <- grepl("\\-mean|\\-std", names(combined_ds))
-# but keep subject and activity
-keepcols[1:2] <- TRUE
+#filter cols of means and std + subject and activity
+keepcols <- grepl("\\-mean|\\-std|activity|subject", names(combined_ds))
 combined_ds <- combined_ds[, keepcols]
 
 # convert the activity column from integer to factor
